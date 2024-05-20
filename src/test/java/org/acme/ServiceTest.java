@@ -3,6 +3,8 @@ package org.acme;
 import io.quarkus.test.junit.QuarkusTest;
 import jakarta.inject.Inject;
 import jakarta.persistence.PersistenceContext;
+import jakarta.persistence.TypedQuery;
+import jakarta.transaction.Transactional;
 import org.acme.dominio.Item;
 import org.acme.dominio.Orden;
 import org.acme.dominio.Usuaria;
@@ -169,7 +171,7 @@ public class ServiceTest {
      *
      * El metodo devuelve la orden de tipo Orden creada.
      */
-    /**
+
     @Test
     @Transactional
     public void test_comanda_ok() {

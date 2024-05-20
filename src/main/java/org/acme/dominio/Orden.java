@@ -25,11 +25,16 @@ public class Orden extends PanacheEntityBase {
     public Orden() {
     }
 
-    public Long getIdOrden() {
+    public Orden(Usuaria user, Item item) {
+        this.user = user;
+        this.item = item;
+    }
+
+    public Long getId() {
         return idOrden;
     }
 
-    public void setIdOrden(Long idOrden) {
+    public void setId(Long idOrden) {
         this.idOrden = idOrden;
     }
 

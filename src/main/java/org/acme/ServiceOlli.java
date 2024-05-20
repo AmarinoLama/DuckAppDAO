@@ -26,17 +26,32 @@ public class ServiceOlli {
         return item.isPresent() ? item.get() : new Item();
     }
 
-
     public List<Orden> cargaOrden(String nombre){
 
         List<Orden> ordenes = Orden.listAll();
         List<Orden> ordenesFiltradas = new ArrayList<>();
 
-        for(Orden orden: ordenes) {
-            if(orden.getUser().equals(nombre)){
+        for (Orden orden : ordenes) {
+            if (orden.getUser().getNombre().equalsIgnoreCase(nombre)) {
                 ordenesFiltradas.add(orden);
             }
         }
         return ordenesFiltradas;
     }
+
+    public Orden comanda (String nombreUsuaria, String nombreItem) {
+
+        Orden comanda = null;
+
+        Optional<Usuaria> usuario = Usuaria.findByIdOptional(nombreUsuaria);
+        Optional<Item> item = Item.findByIdOptional(nombreItem);
+
+        if (usuario.isPresent() && item.isPresent() && usuario.get().getDestreza() >= item.get().getQuality()) {
+
+            comanda = new Orden(usuario.get(),item.get());
+            comanda.persist();
+            }
+        return comanda;
+    }
+
 }
