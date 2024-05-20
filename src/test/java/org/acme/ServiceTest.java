@@ -1,6 +1,7 @@
 package org.acme;
 
 import io.quarkus.test.junit.QuarkusTest;
+import jakarta.inject.Inject;
 import jakarta.persistence.PersistenceContext;
 import org.acme.dominio.Item;
 import org.acme.dominio.Orden;
@@ -14,8 +15,8 @@ public class ServiceTest {
     @PersistenceContext
     jakarta.persistence.EntityManager em;
 
-//    @Inject
-//    ServiceOlli servicio;
+    @Inject
+    ServiceOlli servicio;
 
     /**
      * MAPPINGS de la entidades a las tablas de la BBDD.
@@ -73,7 +74,7 @@ public class ServiceTest {
      * Crea una clase llamada ServiceOlli e indica
      * que es una dependencia Quarkus
      */
-    /**
+
     @Test
     public void test_inyeccion_servicio() {
         Assertions.assertThat(servicio).isNotNull();
