@@ -1,9 +1,9 @@
 package org.acme;
 
 import io.quarkus.test.junit.QuarkusTest;
-import jakarta.inject.Inject;
 import jakarta.persistence.PersistenceContext;
 import org.acme.dominio.Item;
+import org.acme.dominio.Orden;
 import org.acme.dominio.Usuaria;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
