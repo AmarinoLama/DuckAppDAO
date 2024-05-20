@@ -111,7 +111,7 @@ public class ServiceTest {
      * Si no existe, devuelve un objeto Item con sus propiedades
      * y valores como se indica en los casos test.
      */
-    /**
+
     @Test
     public void test_carga_item() {
         Assertions.assertThat(servicio).isNotNull();
