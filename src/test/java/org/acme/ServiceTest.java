@@ -11,6 +11,7 @@ import org.acme.dominio.Usuaria;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+import java.util.Arrays;
 import java.util.List;
 
 @QuarkusTest
@@ -198,7 +199,7 @@ public class ServiceTest {
      * para que NO permita generar pedidos de productos
      * si no existe la usuaria en la base de datos.
      */
-    /**
+
     @Test
     public void test_comanda_no_user() {
         Assertions.assertThat(servicio).isNotNull();
@@ -218,7 +219,7 @@ public class ServiceTest {
      * para que NO permita generar pedidos de productos
      * si no existe el item en la base de datos.
      */
-    /**
+
     @Test
     public void test_comanda_no_item() {
         Assertions.assertThat(servicio).isNotNull();
@@ -240,7 +241,7 @@ public class ServiceTest {
      * que la calidad del Item.
      */
 
-    /**
+
     @Test
     public void test_comanda_item_sin_pro() {
         Assertions.assertThat(servicio).isNotNull();
@@ -263,7 +264,7 @@ public class ServiceTest {
      *
      * No se ordenan items que no existan en la base de datos.
      */
-/**
+
     @Test
     @Transactional
     public void test_ordenar_multiples_items_ok() {
@@ -284,7 +285,8 @@ public class ServiceTest {
         em.find(Orden.class, pedidos.get(1).getId()).delete();
         em.find(Orden.class, pedidos.get(0).getId()).delete();
     }
-     *
+
+
     // No se permiten ordenes si el usuario no existe en la base de datos
     @Test
     @Transactional
@@ -302,5 +304,5 @@ public class ServiceTest {
         List<Orden> ordenes = servicio.comandaMultiple("Hermione", Arrays.asList("Guardapelo Salazar", "Reliquias de la Muerte"));
         Assertions.assertThat(ordenes).isEmpty();
     }
- **/
+
 }

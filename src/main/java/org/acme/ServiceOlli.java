@@ -54,4 +54,39 @@ public class ServiceOlli {
         return comanda;
     }
 
+    public List<Orden> comandaMultiple (String nombreUsuaria, List<String> nombresItems) {
+
+        List<Orden> listaOrdenes = new ArrayList<>();
+
+        Optional<Usuaria> usuario = Usuaria.findByIdOptional(nombreUsuaria);
+
+        List<Item> listaItemsExistentes = new ArrayList<>();
+
+        for(String nombre : nombresItems){
+
+            Optional<Item> item = Item.findByIdOptional(nombre);
+
+            if (item.isPresent()) {
+                listaItemsExistentes.add(item.get());
+            }
+
+        }
+
+        if (usuario.isPresent() && listaItemsExistentes.size() > 0 ) {
+
+            for (Item item: listaItemsExistentes) {
+
+                Orden comanda = null;
+                comanda = new Orden(usuario.get(),item);
+
+                comanda.persist();
+
+                listaOrdenes.add(comanda);
+
+            }
+
+        }
+        return listaOrdenes;
+    }
+
 }
