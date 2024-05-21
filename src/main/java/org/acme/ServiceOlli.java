@@ -57,9 +57,7 @@ public class ServiceOlli {
     public List<Orden> comandaMultiple (String nombreUsuaria, List<String> nombresItems) {
 
         List<Orden> listaOrdenes = new ArrayList<>();
-
         Optional<Usuaria> usuario = Usuaria.findByIdOptional(nombreUsuaria);
-
         List<Item> listaItemsExistentes = new ArrayList<>();
 
         for(String nombre : nombresItems){

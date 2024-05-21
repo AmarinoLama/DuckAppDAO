@@ -1,10 +1,7 @@
 package org.acme.dominio;
 
-import io.quarkus.Generated;
-import io.quarkus.hibernate.orm.panache.PanacheEntity;
 import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
 import jakarta.persistence.*;
-import org.hibernate.validator.constraints.br.CPF;
 
 @Entity
 @Table (name = "t_ordenes")

@@ -1,16 +1,22 @@
 package org.acme.dominio;
 
 import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
+import jakarta.inject.Inject;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import org.acme.repository.RepositoryUsuaria;
 
 @Entity
 @Table (name = "t_users")
-public class Usuaria extends PanacheEntityBase {
+public class Usuaria {
+
+    @Inject
+    RepositoryUsuaria repositoryUsuaria;
+
     @Id
-    @Column (name = "user_nom")
+    @Column (name = "user_nom", unique = true)
     private String nombre = "";
 
     @Column (name = "user_prop")
