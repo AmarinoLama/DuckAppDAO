@@ -12,9 +12,6 @@ import org.acme.repository.RepositoryUsuaria;
 @Table (name = "t_users")
 public class Usuaria {
 
-    @Inject
-    RepositoryUsuaria repositoryUsuaria;
-
     @Id
     @Column (name = "user_nom", unique = true)
     private String nombre = "";

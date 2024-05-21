@@ -11,9 +11,6 @@ import org.acme.repository.RepositoryItem;
 @Table(name="t_items")
 public class Item {
 
-    @Inject
-    RepositoryItem repositoryItem;
-
     @Id
     @Column (name = "item_nom")
     private String nombre = "";

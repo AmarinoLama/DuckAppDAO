@@ -1,11 +1,13 @@
 package org.acme.dominio;
 
 import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
+import jakarta.inject.Inject;
 import jakarta.persistence.*;
+import org.acme.repository.RepositoryOrden;
 
 @Entity
 @Table (name = "t_ordenes")
-public class Orden extends PanacheEntityBase {
+public class Orden  {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column (name = "ord_id")
