@@ -44,12 +44,10 @@ public class ServiceTest {
         Assertions.assertThat(elixir.getTipo()).isEqualTo("NormalItem");
     }
 
-
     /**
      * Completa la definicion y el mapping
      * de la clase Usuaria a la tabla t_users
      */
-
     @Test
     public void test_mapping_usuaria() {
         Usuaria elfo = em.find(Usuaria.class, "Doobey");
@@ -63,8 +61,6 @@ public class ServiceTest {
      * de la clase Orden a la tabla t_ordenes
      * El id de esta clase ha de seguir una estrategia Identity
      */
-
-
     @Test
     public void test_mapping_orden() {
         Orden pedido = em.find(Orden.class, 100L);
@@ -91,7 +87,6 @@ public class ServiceTest {
      * Si no existe, devuelve un objeto usuaria con sus propiedades
      * y valores como se indica en los casos test.
      */
-
     @Test
     public void test_carga_usuaria() {
         Assertions.assertThat(servicio).isNotNull();
@@ -142,7 +137,6 @@ public class ServiceTest {
      * Si no existe, devuelve una lista vacía.
      */
 
-
     @Test
     public void test_carga_orden() {
         Assertions.assertThat(servicio).isNotNull();
@@ -172,7 +166,6 @@ public class ServiceTest {
      *
      * El metodo devuelve la orden de tipo Orden creada.
      */
-
     @Test
     @Transactional
     public void test_comanda_ok() {
@@ -191,7 +184,8 @@ public class ServiceTest {
         Assertions.assertThat(pedidos.get(0).getUser().getNombre()).isEqualTo("Hermione");
         // AgedBrie tendra una id < 100L por lo que se encuentra en el index 0 de pedidos
         Assertions.assertThat(pedidos.get(0).getItem().getNombre()).isEqualToIgnoringCase("AgedBrie");
-        em.find(Orden.class, pedidos.get(0).getId()).delete();
+        orden = em.find(Orden.class, pedidos.get(0).getId());
+        em.remove(orden);
     }
 
     /**
@@ -199,7 +193,6 @@ public class ServiceTest {
      * para que NO permita generar pedidos de productos
      * si no existe la usuaria en la base de datos.
      */
-
     @Test
     public void test_comanda_no_user() {
         Assertions.assertThat(servicio).isNotNull();
@@ -219,7 +212,6 @@ public class ServiceTest {
      * para que NO permita generar pedidos de productos
      * si no existe el item en la base de datos.
      */
-
     @Test
     public void test_comanda_no_item() {
         Assertions.assertThat(servicio).isNotNull();
@@ -240,8 +232,6 @@ public class ServiceTest {
      * cuando la destreza de la usuaria sea menor
      * que la calidad del Item.
      */
-
-
     @Test
     public void test_comanda_item_sin_pro() {
         Assertions.assertThat(servicio).isNotNull();
@@ -282,10 +272,11 @@ public class ServiceTest {
         Assertions.assertThat(pedidos.get(0).getItem().getNombre()).isEqualToIgnoringCase("AgedBrie");
         Assertions.assertThat(pedidos.get(1).getItem().getNombre()).isEqualToIgnoringCase("Elixir of the Mongoose");
         Assertions.assertThat(pedidos.get(2).getItem().getNombre()).isEqualToIgnoringCase("+5 Dexterity Vest");
-        em.find(Orden.class, pedidos.get(1).getId()).delete();
-        em.find(Orden.class, pedidos.get(0).getId()).delete();
+        Orden orden = em.find(Orden.class, pedidos.get(1).getId());
+        em.remove(orden);
+        orden = em.find(Orden.class, pedidos.get(0).getId());
+        em.remove(orden);
     }
-
 
     // No se permiten ordenes si el usuario no existe en la base de datos
     @Test
@@ -304,5 +295,4 @@ public class ServiceTest {
         List<Orden> ordenes = servicio.comandaMultiple("Hermione", Arrays.asList("Guardapelo Salazar", "Reliquias de la Muerte"));
         Assertions.assertThat(ordenes).isEmpty();
     }
-
 }
