@@ -1,3 +1,5 @@
+Proyecto que consiste en realizar una actividad propuesta en clase, conectando un programa a una BBDD mediante el método DAO con quarkus.
+
 # my-quarkus-app
 
 This project uses Quarkus, the Supersonic Subatomic Java Framework.
